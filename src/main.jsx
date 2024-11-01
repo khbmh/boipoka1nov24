@@ -7,6 +7,7 @@ import ErrorPage from './assets/components/errorpage/ErrorPage';
 import Home from './assets/components/home/Home';
 import ListedBooks from './assets/components/listedBooks/ListedBooks';
 import PageRead from './assets/components/pagetoRead/PageRead';
+import BookDetails from './assets/components/books/BookDetails';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,27 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/books/:bookId',
+        element: (
+          <div className='p-2 md:p-5'>
+            <BookDetails />
+          </div>
+        ),
+        loader: () =>
+          fetch(
+            'https://raw.githubusercontent.com/ProgrammingHero1/boi-poka-Book-Vibe-Resources/refs/heads/main/data/booksData.json',
+          )
+            .then((response) => {
+              if (!response.ok) {
+                throw new Response('Failed to load book data', {
+                  status: response.status,
+                });
+              }
+              return response.json();
+            })
+            .then((data) => data), // Return the data to the BookDetails component
       },
       {
         path: '/listed-books',

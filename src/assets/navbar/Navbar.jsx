@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   const links = (
-    <>
+    <div className='flex flex-col lg:flex-row gap-3 lg:gap-8 p-4 lg:p-0'>
       <li>
         <NavLink to="/">Book</NavLink>
       </li>
@@ -13,7 +13,7 @@ function Navbar() {
       <li>
         <NavLink to="/reading-page">Pages to Read</NavLink>
       </li>
-    </>
+    </div>
   );
 
   return (
